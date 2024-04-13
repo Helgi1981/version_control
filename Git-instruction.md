@@ -118,3 +118,92 @@ git log --graph
 ## При первом использовании Git необходимо представиться. Для этого нужно ввести в терминале 2 команды: ##
 ### git config --global user.name «Ваше имя английскими буквами» ###
 ### git config --global user.email ваша почта@example.com ###
+
+# Работа с GitHub
+
+**В начале необходимо зарегистрироваться на GitHub и создать свой аккаунт, следуя инструкции с сайта.**
+
+## Создание своего репозитория на GitHub:
+- *Создаём новый репозиторий на сайте;*
+- *Создаём одноименную директорию на локальном компьютере;*
+- *В терминале указываем путь к ней (cd "путь к директории");*
+- *Следуем инструкциям с сайта и прописываем все предложенные команды в терминал (пошагово).*
+
+## Команда проверки связки локального репозитория с GitHub:
+
+```sh
+git remote show
+```
+**А также:**
+
+```sh
+git remote -v
+```
+
+## Клонирование репозитория другого пользователя в GitHub:
+
+*Делаем fork репозитория, в которой потом хотим сделать pull request. Пример: ищем кнопку Fork на странице репозитория: <https://git@github.com:gulden-geekbrains/version_control.git>*
+
+*Выполняем команду клонирования из своей fork-копии:*
+
+```sh
+git clone git@github.com:*YOURE_GITHUB*/version_control.git
+```
+
+*Создаем новую ветку и вносим необходимые изменения в файл:*
+
+```sh
+git checkout -b updatereadme
+vim README.md
+git add README.md
+git commit -m "Добавили инструкцию как создать pull request"
+```
+
+## Команда вливания локального репозитория в удалённый:
+
+```sh
+git push
+```
+
+*Пример для описываемой ситуации:*
+
+```sh
+git push --set-upstream origin updatereadme
+```
+_*Переходим на свою страницу репозитория. Выбираем ветку **updatereadme** и жмем кнопку **Compare & pull request**_
+
+## Команда вытягивания информации из удалённого репозитория в локальный:
+
+```sh
+git pull
+```
+
+## Заметки
+
+*Что бы сделать push от другого пользователя необходимо выполнить команду:*
+
+```sh
+GIT_SSH_COMMAND='ssh -i ~/.ssh/user-private-key -o IdentitiesOnly=yes' git push git@github.com:gulden-geekbrains/version_control.git
+```
+
+*Вместо *user-private-key* подставьте свой ключ*
+
+*Можно прописать настройки для подсоединения по ssh*
+
+```sh
+git config remote.origin.url git@github.com:gitusername/reponame
+git config core.sshCommand "ssh -i ~/.ssh/user-private-key -o IdentitiesOnly=yes"
+```
+# Как подружить git с github под Windows 10
+
+*Вот видео инструкция: https://youtu.be/E8cIjbJMEpE*
+
+## Особенности команды "pull":
+
+- *git должен знать адрес удаленного репозитория;*
+- *git должен быть "авторизован" на внесение изменений в удаленном репозитории.*
+
+## Как сработает git merge lists:
+
+- *В текущую ветку добавит информацию из ветки lists;*
+- *В ветку list добавить всю информацию из текущей ветки.*
